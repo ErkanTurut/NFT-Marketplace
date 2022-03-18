@@ -1,7 +1,6 @@
+import logo from "./logo.png";
+import "./App.css";
 
-import logo from './logo.png';
-import './App.css';
- 
 function App() {
   return (
     <div>
@@ -12,7 +11,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Dapp University
+          KAM
         </a>
       </nav>
       <div className="container-fluid mt-5">
@@ -24,11 +23,11 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={logo} className="App-logo" alt="logo"/>
+                <img src={logo} className="App-logo" alt="logo" />
               </a>
-              <h1 className= "mt-5">Dapp University Starter Kit</h1>
+              <h1 className="mt-5">Marketplace Dapp</h1>
               <p>
-                Edit <code>src/frontend/components/App.js</code> and save to reload.
+                <code>KAM travail dessus</code>
               </p>
               <a
                 className="App-link"
@@ -36,7 +35,10 @@ function App() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                LEARN BLOCKCHAIN <u><b>NOW! </b></u>
+                LEARN BLOCKCHAIN{" "}
+                <u>
+                  <b>NOW! </b>
+                </u>
               </a>
             </div>
           </main>
