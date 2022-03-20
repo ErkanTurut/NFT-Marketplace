@@ -1,5 +1,5 @@
 async function ez() {
-  const objet = ["collier", "bague", "bracelet", "boucle oreille"];
+  const objet = ["bague", "collier", "bracelet", "boucle oreille"];
   const pierre = [
     "topaze",
     "citrine",
@@ -16,13 +16,28 @@ async function ez() {
     "calcédoine",
     "calcédoine bleue",
     "calcédoine rose",
+    "malachite",
+    "ambre",
+    "Apatite",
+    "cristal",
+    "Cyanite",
+    "hémimorphite",
+    "labradorite",
+    "morganite",
+    "nacre",
+    "oeil de tigre",
+    "péristérite",
+    "Perle",
+    "Quartz framboise",
+    "rubis",
+    "Spessartite",
   ];
 
   let i = 0;
   while (i < objet.length) {
     let cpt = 0;
     while (cpt < pierre.length) {
-      console.log(objet[i], pierre[cpt]);
+      console.log(objet[i], pierre[cpt].toLowerCase());
       cpt++;
     }
 

@@ -25,21 +25,10 @@ function App() {
               >
                 <img src={logo} className="App-logo" alt="logo" />
               </a>
-              <h1 className="mt-5">Marketplace Dapp</h1>
+              <h1 className="mt-5">Hello world</h1>
               <p>
                 <code>KAM travail dessus</code>
               </p>
-              <a
-                className="App-link"
-                href="http://www.dappuniversity.com/bootcamp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LEARN BLOCKCHAIN{" "}
-                <u>
-                  <b>NOW! </b>
-                </u>
-              </a>
             </div>
           </main>
         </div>
