@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./Navbar";
 import Home from "./Home.js";
 import Create from "./Create.js";
-//import MyListedItems from "./MyListedItems.js";
+import MyListedItems from "./MyListedItems.js";
 //import MyPurchases from "./MyPurchases.js";
 import MarketplaceAbi from "../contractsData/Marketplace.json";
 import MarketplaceAddress from "../contractsData/Marketplace-address.json";
@@ -82,7 +82,16 @@ function App() {
                 path="/create"
                 element={<Create marketplace={marketplace} nft={nft} />}
               />
-              <Route path="/my-listed-items" />
+              <Route
+                path="/my-listed-items"
+                element={
+                  <MyListedItems
+                    marketplace={marketplace}
+                    nft={nft}
+                    account={account}
+                  />
+                }
+              />
               <Route path="/my-purchases" />
             </Routes>
           )}

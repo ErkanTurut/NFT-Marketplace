@@ -1,14 +1,15 @@
-
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
+import "hardhat/console.sol";
 
 contract Marketplace is ReentrancyGuard {
 
-      // Variables
+    // Variables
     address payable public immutable feeAccount; // the account that receives fees
     uint public immutable feePercent; // the fee percentage on sales 
     uint public itemCount; 
@@ -18,13 +19,14 @@ contract Marketplace is ReentrancyGuard {
         IERC721 nft;
         uint tokenId;
         uint price;
-        address payable seller; 
+        address payable seller;
         bool sold;
     }
 
-    mapping(uint => Item) public items; 
+    // itemId -> Item
+    mapping(uint => Item) public items;
 
-     event Offered(
+    event Offered(
         uint itemId,
         address indexed nft,
         uint tokenId,
@@ -39,8 +41,6 @@ contract Marketplace is ReentrancyGuard {
         address indexed seller,
         address indexed buyer
     );
-
-    
 
     constructor(uint _feePercent) {
         feeAccount = payable(msg.sender);
@@ -77,23 +77,26 @@ contract Marketplace is ReentrancyGuard {
         uint _totalPrice = getTotalPrice(_itemId);
         Item storage item = items[_itemId];
         require(_itemId > 0 && _itemId <= itemCount, "item doesn't exist");
-        require(msg.value >= _totalPrice, "not enough ether to cover item price market fee");
+        require(msg.value >= _totalPrice, "not enough ether to cover item price and market fee");
         require(!item.sold, "item already sold");
-        // pay the seller
+        // pay seller and feeAccount
         item.seller.transfer(item.price);
-        //pay de feeAccount with the feePrice
         feeAccount.transfer(_totalPrice - item.price);
-        //update item to sold 
-        item.sold = true; 
-        //transfer nft to buyer
+        // update item to sold
+        item.sold = true;
+        // transfer nft to buyer
         item.nft.transferFrom(address(this), msg.sender, item.tokenId);
-
-        // emit Offered event
-        emit Bought(_itemId, address(item.nft), item.tokenId, item.price, item.seller, msg.sender);
-    
+        // emit Bought event
+        emit Bought(
+            _itemId,
+            address(item.nft),
+            item.tokenId,
+            item.price,
+            item.seller,
+            msg.sender
+        );
     }
-
     function getTotalPrice(uint _itemId) view public returns(uint){
-        return(items[_itemId].price*(100+feePercent)/100);
+        return((items[_itemId].price*(100 + feePercent))/100);
     }
 }
